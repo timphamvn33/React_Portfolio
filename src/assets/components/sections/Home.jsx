@@ -24,16 +24,11 @@ export const Home = ({isLoaded}) => {
                         return 1;
                     }
                 });
-
                
             }, 100)
-           
-
         
             return () => clearInterval(invterval);
         }
-
-        
         
     }, [isLoaded])
     
