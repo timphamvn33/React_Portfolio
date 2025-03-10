@@ -4,6 +4,7 @@ import { LoadingScreen } from './assets/components/LoadingScreen'
 import "./index.css"
 import { Navbar } from './assets/components/sections/Navbar'
 import {MobileMenu} from './assets/components/sections/MobileMenu'
+import {Home} from  './assets/components/sections/Home'
 
 function App() {
 
@@ -18,9 +19,10 @@ function App() {
           bg-black text-gray-100` }>
             <Navbar menuOpen = {menuOpen} setMenuOpen = {setMenuOpen} />
             <MobileMenu menuOpen = {menuOpen} setMenuOpen = {setMenuOpen}/>
-          
+            <Home isLoaded = {isLoaded}/>
 
         </div>
+        
     </>
   )
 }
