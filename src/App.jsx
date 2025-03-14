@@ -13,20 +13,19 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [isInView2, setIsInView2] = useState(false);
+  const [isInView1, setIsInView1] = useState(false);
 
   const handleScroll = (() => {
     const section = document.getElementById("about");
     if(section) {
       const rect = section.getBoundingClientRect();
-      if(rect.top <= window.innerHeight && rect.bottom >= 0){
+      if(rect.top < window.innerHeight && rect.bottom > window.innerHeight){
         setIsInView(true);
    
       } else {
         setIsInView(false);
-       
       }
     }
-  
   })
 
   const handleScroll2 = (() =>{
@@ -34,13 +33,34 @@ function App() {
 
     if(sectionSkill) {
       const rect = sectionSkill.getBoundingClientRect();
-      if(rect.top <= window.innerHeight && rect.bottom >= 0) {
+      if(rect.top < window.innerHeight && rect.bottom > window.innerHeight) {
         setIsInView2(true);
       } else {
         setIsInView2(false);
       }
     }
   });
+
+  const handleScroll1 = (() => {
+    const sectHome = document.getElementById("home");
+    if(sectHome) {
+      const rect = sectHome.getBoundingClientRect();
+      console.log("rect: ", rect);
+      console.log("window.innerHeigh: ",window.innerHeight);
+      if(rect.top < window.innerHeight && rect.bottom >= window.innerHeight) {
+        setIsInView1(true);
+      } else {
+        setIsInView1(false);
+      }
+    }
+  })
+
+  useEffect(() => {
+    window.addEventListener('scroll',  handleScroll1);
+    return () => {window.removeEventListener('scroll', handleScroll1)};
+  })
+
+
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll2);
@@ -56,10 +76,6 @@ function App() {
     }
   }, [])
 
-  // useEffect(()=> {
-  //   console.log("isInView 4: ",isInView )
-  // }, [isInView])
-
   return (
     <>
       {!isLoaded && <LoadingScreen onComlete={() => setIsLoaded(true)}/>}
@@ -68,7 +84,7 @@ function App() {
           bg-black text-gray-100` }>
             <Navbar menuOpen = {menuOpen} setMenuOpen = {setMenuOpen} />
             <MobileMenu menuOpen = {menuOpen} setMenuOpen = {setMenuOpen}/>
-            <Home isLoaded = {isLoaded}/>
+            <Home isLoaded = {isLoaded} isInView1 = {isInView1}/>
             <About isInView={isInView} isLoaded={isLoaded} />
             <Skills isInView2={isInView2} isLoaded={isLoaded} />
 

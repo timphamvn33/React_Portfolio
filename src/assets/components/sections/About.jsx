@@ -7,34 +7,29 @@ export const About = ({isLoaded, isInView}) => {
     useEffect( () =>{
         if(isLoaded && isInView ) {
             const small = window.innerWidth <= 599;
-            console.log("window.innerWidth: ", window.innerWidth)
-            const medium = 600 < window.innerWidth <= 1199;
             const large = window.innerWidth > 1200;
 
             if(small) {
-                console.log("hello small");
-                setTransPositionRight((prev) => (prev < 10 ? prev + 10 : prev)); // Update position right
+                setTransPositionRight((prev) => (prev < 10 ? prev + 10 : prev)); //Update position right
                 setTransPositionLeft((prev) => (prev > -10 ? prev -10: prev)); // Update position left
 
             } 
             else if (large) {
-                console.log("hello large");
                 setTransPositionRight((prev) => (prev < 200 ? prev + 200 : prev)); // Update position right
                 setTransPositionLeft((prev) => (prev > -200 ? prev - 200: prev)); // Update position left
 
             } else {
-                console.log("hello medium");
                 setTransPositionRight((prev) => (prev < 50 ? prev + 50 : prev)); // Update position right
                 setTransPositionLeft((prev) => (prev > -50 ? prev -50: prev)); // Update position left
 
             }
 
+        } else {
+            setTransPositionLeft((prev) => prev = 0);
+            setTransPositionRight((prev) => prev = 0);
         }
-    }, [isLoaded, isInView, transPositionRight]);
+    }, [isLoaded, isInView, transPositionRight, transPositionLeft]);
 
-    useEffect(() => {
-        console.log("transPositionRight: ", transPositionRight);
-    })
     
     return(
         <section id ="about">
@@ -44,7 +39,7 @@ export const About = ({isLoaded, isInView}) => {
                     <div className=" sm:w-full md:w-200 lg:w-100 mx-5 relative mb-10 lg:mb-20"
                             style={{
                             fontFamily: `Orbitron, sans-serif`,
-                            transition: "transform 2s ease-in-out",
+                            transition: "transform 1s ease-in-out",
                             transform: `translateX(${transPositionRight}px)`}}
                             > 
                         <h2 className = "text-lg md:text-2xl lg:text-3xl font-bold mb-5 mx-5 text-gray-300 text-left">Software Engineer Air Force Materiel Command</h2>
@@ -71,7 +66,7 @@ export const About = ({isLoaded, isInView}) => {
                     <div className="w-100 mb-10 lg:mb-20 relative  mx-5"
                                     style={{ 
                                         fontFamily: `Orbitron, sans-serif`,
-                                        transition: "transform 2s ease-in-out",
+                                        transition: "transform 1s ease-in-out",
                                         transform: `translateX(${transPositionLeft}px)`}}
                                         >
                         <h1 className = "text-sm md:text-lg lg:text-xl text-gray-400 tracking-wider m-4 p-4 text-center">Warner Robins, GA 2022 – Present</h1>
@@ -83,7 +78,7 @@ export const About = ({isLoaded, isInView}) => {
                     <div className="w-100 mx-5 relative mb-10 lg:mb-20"
                             style={{ 
                             fontFamily: `Orbitron, sans-serif`,
-                            transition: "transform 2s ease-in-out",
+                            transition: "transform 1s ease-in-out",
                             transform: `translateX(${transPositionRight}px)`}}
                             > 
                     
@@ -102,7 +97,7 @@ export const About = ({isLoaded, isInView}) => {
                     <div className="w-100 mb-10 lg:mb-20 relative mx-5"
                                     style={{ 
                                         fontFamily: `Orbitron, sans-serif`,
-                                        transition: "transform 2s ease-in-out",
+                                        transition: "transform 1s ease-in-out",
                                         transform: `translateX(${transPositionLeft}px)`}}
                                         >
                             <h1 className = "text-sm md:text-lg lg:text-xl text-gray-400 tracking-wider m-4 p-4 text-left">Valdosta, GA 2022 – May 2022</h1>
