@@ -27,14 +27,14 @@ export const Home = ({isLoaded, isInView1}) => {
 
             <div className = "text-center z-10 px-4">
                 <h1 className = {`text-2xl md:text-4xl lg:text-7xl font-bold mb-0 md:mb-2 lg:mb-6 leading-right bg-gradient-to-r from-blue-600 to-blue-300 bg-clip-text text-transparent 
-                    transition-opacity duration-1500 ease-in-out
+                    transition-opacity duration-1000 ease-in-out
                     opacity-${Math.ceil(textOpacity*10)}, mb-20`}  
                     style = {{fontFamily: `Orbitron, sans-serif`}}>
                     Hi! I'm Thuong (Tim) Pham
                 </h1>
                 <div className = "text-center z-10 px-4 md:px-0 lg:px-20 ">
                     <p className={`text-lg md:text-2xl lg:text-3xl text-justify 
-                        transition-opacity duration-2000 ease-in-out opacity-${Math.ceil(textOpacity*10)} text-gray-400
+                        transition-opacity duration-1000 ease-in-out opacity-${Math.ceil(textOpacity*10)} text-gray-400
                         font-mono ` }style ={{lineHeight: `2`}}>
                         I have three years of experience as a software engineer for Robins AFMC. My role in the team is designing, developing, debugging, and implementing scalable software solutions. 
                         I have always wanted to learn more about the software engineering field. I’m a hard-working, dedicated, and disciplined worker and very passionate about coding.
