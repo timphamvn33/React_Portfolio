@@ -26,7 +26,7 @@ export const Home = ({isLoaded, isInView1}) => {
         className= "min-h-screen flex items-center justify-center relative" >
 
             <div className = "text-center z-10 px-4">
-                <h1 className = {`sm:text-2xl md:text-4xl lg:text-7xl font-bold sm:mb-0 md:mb-2 lg:mb-6 leading-right bg-gradient-to-r from-blue-600 to-blue-300 bg-clip-text text-transparent 
+                <h1 className = {`text-2xl md:text-4xl lg:text-7xl font-bold mb-0 md:mb-2 lg:mb-6 leading-right bg-gradient-to-r from-blue-600 to-blue-300 bg-clip-text text-transparent 
                     transition-opacity duration-1500 ease-in-out
                     opacity-${Math.ceil(textOpacity*10)}, mb-20`}  
                     style = {{fontFamily: `Orbitron, sans-serif`}}>
@@ -41,7 +41,7 @@ export const Home = ({isLoaded, isInView1}) => {
                     </p>
                 </div> 
 
-                <div className={`flex justify-center space-x-10  sm:mt-5 md:mt-10 lg:mt-20 transition-opacity duration-2000 ease-in-out opacity-${Math.ceil(textOpacity*10)}`}>
+                <div className={`flex justify-center space-x-10  mt-5 md:mt-10 lg:mt-20 transition-opacity duration-2000 ease-in-out opacity-${Math.ceil(textOpacity*10)}`}>
                     <a href="https://github.com/timphamvn33" target="_blank" rel="noopener noreferrer">
                         <i className="fab fa-github text-lg md:text-2xl lg:text-5xl text-gray-400 hover:text-blue-600"></i>
                     </a>

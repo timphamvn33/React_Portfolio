@@ -28,7 +28,7 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
                         HOME{" "}
                     </a> */}
 
-                    <a href="/resume_pham.docx" download className="text-gray-300 hove:text-white transition-colors text-lg md:text-xl lg:text-2xl hover:bg-gradient-to-r hover:from-blue-500 hover:to-gray-300 hover:bg-clip-text hover:text-transparent hover:font-bold">
+                    <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Ftimphamvn33%2FReact_Portfolio%2Frefs%2Fheads%2Fmaster%2Fsrc%2Fassets%2Fcomponents%2FResume_Pham.docx&wdOrigin=BROWSELINK" download className="text-gray-300 hove:text-white transition-colors text-lg md:text-xl lg:text-2xl hover:bg-gradient-to-r hover:from-blue-500 hover:to-gray-300 hover:bg-clip-text hover:text-transparent hover:font-bold">
                         {" "}
                         RESUME{" "}
                     </a>
