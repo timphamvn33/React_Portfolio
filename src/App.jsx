@@ -7,6 +7,7 @@ import {MobileMenu} from './assets/components/sections/MobileMenu'
 import {Home} from  './assets/components/sections/Home'
 import { About } from './assets/components/sections/About'
 import { Skills } from './assets/components/sections/Skills'
+import { Contacts } from './assets/components/sections/Contacts'
 function App() {
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -87,6 +88,7 @@ function App() {
             <Home isLoaded = {isLoaded} isInView1 = {isInView1}/>
             <About isInView={isInView} isLoaded={isLoaded} />
             <Skills isInView2={isInView2} isLoaded={isLoaded} />
+            <Contacts />
 
         </div>
         
