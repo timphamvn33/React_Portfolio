@@ -5,21 +5,57 @@ export const Home = ({isLoaded, isInView1}) => {
     const [textOpacity, setTextOpacity] = useState(0);
 
     // This effect will run only once after the initial render (when the page is loaded)
-    useEffect(() => {
-        // Set opacity to 1 immediately after the component mounts
-        setTextOpacity(1);
-    }, []);
+    // useEffect(() => {
+    //     // Set opacity to 1 immediately after the component mounts
+    //     setTextOpacity(1);
+    // }, []);
 
     // This effect manages opacity when the content comes into view or out of view
     useEffect(() => {
-        if (isInView1) {
+        if(isInView1 && isLoaded) {
+            const opChange = textOpacity;
             // Gradually increase opacity when the element is in view
-            setTextOpacity(prev => (prev < 1 ? prev + 0.1 : 1));
-        } else {
-            // Reset opacity to 0 when the element is not in view
-            setTextOpacity(0);
-        }
-    }, [isInView1]);
+            const interval = setInterval(() => {
+                console.log("hello change start ")
+                if(opChange < 1) {
+                    console.log("hello change ")
+                    setTextOpacity((prev) => {
+                        if(prev < 1){ 
+                            prev = prev + 0.1;
+                            console.log("hello change 123")
+                            return prev;
+
+                        }
+
+                        
+                    });
+                } else {
+                    clearInterval(interval);
+                }
+                    
+                    
+            }, 100);
+
+            return () => clearInterval(interval);
+
+            }
+
+            if(!isInView1) {
+                // Reset opacity to 0 when the element is not in view
+                setTextOpacity(0);
+
+            }
+
+
+
+
+    }, [isInView1, textOpacity]);
+
+    useEffect(( )=> {
+        console.log("textOpacity: ", textOpacity)
+    })
+
+    
 
     return (
         <section id ="home" 
@@ -33,9 +69,11 @@ export const Home = ({isLoaded, isInView1}) => {
                     Hi! I'm Thuong (Tim) Pham
                 </h1>
                 <div className = "text-center z-10 px-4 md:px-0 lg:px-20 ">
-                    <p className={`text-lg md:text-2xl lg:text-3xl text-justify 
+                    <p className="text-lg md:text-2xl lg:text-3xl text-justify 
                         transition-opacity duration-1000 ease-in-out opacity-${Math.ceil(textOpacity*10)} text-gray-400
-                        font-mono ` }style ={{lineHeight: `2`}}>
+                        font-mono "style ={{lineHeight: `2`,
+                        opacity: textOpacity
+                        }}>
                         I have three years of experience as a software engineer for Robins AFMC. My role in the team is designing, developing, debugging, and implementing scalable software solutions. 
                         I have always wanted to learn more about the software engineering field. I’m a hard-working, dedicated, and disciplined worker and very passionate about coding.
                     </p>

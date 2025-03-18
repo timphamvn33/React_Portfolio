@@ -46,8 +46,6 @@ function App() {
     const sectHome = document.getElementById("home");
     if(sectHome) {
       const rect = sectHome.getBoundingClientRect();
-      console.log("rect: ", rect);
-      console.log("window.innerHeigh: ",window.innerHeight);
       if(rect.top < window.innerHeight && rect.bottom >= window.innerHeight) {
         setIsInView1(true);
       } else {
