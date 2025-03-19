@@ -4,12 +4,6 @@ export const Home = ({isLoaded, isInView1}) => {
     
     const [textOpacity, setTextOpacity] = useState(0);
 
-    // This effect will run only once after the initial render (when the page is loaded)
-    // useEffect(() => {
-    //     // Set opacity to 1 immediately after the component mounts
-    //     setTextOpacity(1);
-    // }, []);
-
     // This effect manages opacity when the content comes into view or out of view
     useEffect(() => {
         if(isInView1 && isLoaded) {
@@ -24,10 +18,7 @@ export const Home = ({isLoaded, isInView1}) => {
                             prev = prev + 0.1;
                             console.log("hello change 123")
                             return prev;
-
-                        }
-
-                        
+                        } 
                     });
                 } else {
                     clearInterval(interval);
@@ -36,17 +27,12 @@ export const Home = ({isLoaded, isInView1}) => {
                     
             }, 100);
 
-            return () => clearInterval(interval);
+                return () => clearInterval(interval);
 
-            }
-
-            if(!isInView1) {
-                // Reset opacity to 0 when the element is not in view
-                setTextOpacity(0);
-
-            }
-
-
+        } else {
+            // Reset opacity to 0 when the element is not in view
+            setTextOpacity(0);
+        }
 
 
     }, [isInView1, textOpacity]);
@@ -56,7 +42,6 @@ export const Home = ({isLoaded, isInView1}) => {
     })
 
     
-
     return (
         <section id ="home" 
         className= "min-h-screen flex items-center justify-center relative" >
