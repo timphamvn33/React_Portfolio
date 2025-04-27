@@ -3,13 +3,14 @@ export const Skills = ({ isLoaded, isInView2 }) => {
   const [moveUp, setMoveUp] = useState(50);
   const [opChange, setOpChange] = useState(new Array(16).fill(0));
   const [left, setLeft] = useState(0);
-  const [right, setRight] = useState(1);
   useEffect(() => {
     if (isLoaded && isInView2) {
-      const rect = window.innerWidth;
-      setMoveUp((prev) => (prev = -20));
+      setMoveUp((prev) => {
+        prev = -20;
+        return prev;
+      });
     } else {
-      setMoveUp((prev) => (prev = 50));
+      setMoveUp(50);
     }
   }, [isLoaded, isInView2, moveUp]);
 

@@ -8,13 +8,12 @@ import { Home } from "./assets/components/sections/Home";
 import { About } from "./assets/components/sections/About";
 import { Skills } from "./assets/components/sections/Skills";
 import { Contacts } from "./assets/components/sections/Contacts";
+import { useScroll, motion } from "framer-motion"; // ✅ import motion!
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [isInView2, setIsInView2] = useState(false);
-  const [isInView1, setIsInView1] = useState(false);
-  const [textOpacity, setTextOpacity] = useState(0);
 
   const handleScroll = () => {
     const section = document.getElementById("about");
@@ -41,25 +40,6 @@ function App() {
     }
   };
 
-  const handleScroll1 = () => {
-    const sectHome = document.getElementById("home");
-    if (sectHome) {
-      const rect = sectHome.getBoundingClientRect();
-      setIsInView1(
-        rect.top < window.innerHeight && rect.bottom >= window.innerHeight
-      );
-    }
-  };
-
-  useEffect(() => {
-    console.log("home in");
-    handleScroll1();
-    window.addEventListener("scroll", handleScroll1);
-    return () => {
-      window.removeEventListener("scroll", handleScroll1);
-    };
-  }, []);
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll2);
     return () => {
@@ -74,6 +54,8 @@ function App() {
     };
   }, []);
 
+  const { scrollYProgress } = useScroll();
+
   return (
     <>
       {!isLoaded && <LoadingScreen onComlete={() => setIsLoaded(true)} />}
@@ -84,15 +66,14 @@ function App() {
       >
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <Home
-          isLoaded={isLoaded}
-          isInView1={isInView1}
-          textOpacity={textOpacity}
-          setTextOpacity={setTextOpacity}
-        />
+        <Home />
         <About isInView={isInView} isLoaded={isLoaded} />
         <Skills isInView2={isInView2} isLoaded={isLoaded} />
         <Contacts />
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-blue-500 origin-left z-50"
+          style={{ scaleX: scrollYProgress }}
+        />
       </div>
     </>
   );

@@ -1,26 +1,61 @@
 import { useEffect } from "react";
+import { animate, inView, hover } from "motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
-export const Home = ({ isLoaded, isInView1, textOpacity, setTextOpacity }) => {
+export const Home = () => {
   useEffect(() => {
-    let animationFrame;
-    const fadeIn = () => {
-      setTextOpacity((prev) => {
-        const next = Math.min(prev + 0.02, 1);
-        if (next < 1) {
-          animationFrame = requestAnimationFrame(fadeIn);
-        }
-        return next;
-      });
+    const section = document.getElementById("home");
+    if (!section) return;
+
+    // Animate on inView
+    const stopInView = inView(section, () => {
+      const h1 = section.querySelector("h1");
+      const p = section.querySelector("p");
+      const icons = section.querySelectorAll("a");
+
+      if (h1) {
+        animate(
+          h1,
+          { opacity: [0, 1], y: [20, 0] },
+          { duration: 0.8, delay: 0.1 }
+        );
+      }
+
+      if (p) {
+        animate(
+          p,
+          { opacity: [0, 1], y: [20, 0] },
+          { duration: 0.8, delay: 0.3 }
+        );
+      }
+
+      if (icons.length) {
+        animate(
+          icons,
+          { opacity: [0, 1], y: [20, 0] },
+          {
+            duration: 0.6,
+            delay: 0.5,
+            stagger: 0.1,
+          }
+        );
+      }
+    });
+
+    // Hover animation
+    const stopHover = hover("h1, p, a", (el) => {
+      animate(el, { scale: 0.95 }, { duration: 0.2 });
+      return () => animate(el, { scale: 1 }, { duration: 0.2 });
+    });
+
+    return () => {
+      stopInView?.();
+      stopHover?.();
     };
-
-    if (isInView1) {
-      fadeIn();
-    } else {
-      setTextOpacity(0);
-    }
-
-    return () => cancelAnimationFrame(animationFrame);
-  }, [isInView1]);
+  }, []);
 
   return (
     <section
@@ -28,20 +63,11 @@ export const Home = ({ isLoaded, isInView1, textOpacity, setTextOpacity }) => {
       className="min-h-screen flex items-center justify-center relative"
     >
       <div className="text-center z-10 px-4">
-        <h1
-          className="text-2xl md:text-4xl lg:text-7xl font-bold mb-6 leading-right bg-gradient-to-r from-blue-600 to-blue-300 bg-clip-text text-transparent transition-opacity duration-700 ease-in-out"
-          style={{
-            fontFamily: "Orbitron, sans-serif",
-            opacity: textOpacity,
-          }}
-        >
+        <h1 className="text-2xl md:text-4xl lg:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-blue-600 to-blue-300 bg-clip-text text-transparent opacity-0">
           Hi! I'm Thuong (Tim) Pham
         </h1>
 
-        <p
-          className="text-lg md:text-2xl lg:text-3xl text-gray-400 font-mono text-justify transition-opacity duration-700 ease-in-out"
-          style={{ opacity: textOpacity, lineHeight: "2" }}
-        >
+        <p className="text-lg md:text-2xl lg:text-3xl text-gray-400 font-mono text-justify opacity-0">
           I’m a full stack developer with 3+ years of experience building
           scalable, high-performance websites and applications. Recently at
           Robins AFMC, I built full-stack solutions for internal tooling and
@@ -49,30 +75,36 @@ export const Home = ({ isLoaded, isInView1, textOpacity, setTextOpacity }) => {
           and real-time capabilities.
         </p>
 
-        <div
-          className="flex justify-center space-x-10 mt-10 transition-opacity duration-700 ease-in-out"
-          style={{ opacity: textOpacity }}
-        >
+        <div className="flex justify-center space-x-10 mt-10">
           <a
             href="https://github.com/timphamvn33"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fab fa-github text-3xl text-gray-400 hover:text-blue-600" />
+            <FontAwesomeIcon
+              icon={faGithub}
+              className="text-3xl text-gray-400 hover:text-blue-600"
+            />
           </a>
           <a
             href="https://www.linkedin.com/in/thuong-pham-14442b221/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fab fa-linkedin text-3xl text-gray-400 hover:text-blue-600" />
+            <FontAwesomeIcon
+              icon={faLinkedin}
+              className="text-3xl text-gray-400 hover:text-blue-600"
+            />
           </a>
           <a
             href="mailto:timphamvn33@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fas fa-envelope text-3xl text-gray-400 hover:text-blue-600" />
+            <FontAwesomeIcon
+              icon={faEnvelope}
+              className="text-3xl text-gray-400 hover:text-blue-600"
+            />
           </a>
         </div>
       </div>
