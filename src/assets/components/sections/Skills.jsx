@@ -1,192 +1,63 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const skillList = [
+  "HTML", "CSS", "TAILWIND CSS", "ANGULAR", "REACT",
+  "TYPESCRIPT", "JAVASCRIPT", "PYTHON", "JAVA", "SPRINGBOOT",
+  "GIT", "FORK", "POSTGRESQL", "NODE.JS", "MONGODB", "MYSQL"
+];
+
 export const Skills = ({ isLoaded, isInView2 }) => {
   const [moveUp, setMoveUp] = useState(50);
-  const [opChange, setOpChange] = useState(new Array(16).fill(0));
-  const [left, setLeft] = useState(0);
+
   useEffect(() => {
     if (isLoaded && isInView2) {
-      setMoveUp((prev) => {
-        prev = -20;
-        return prev;
-      });
+      setMoveUp(-10);
     } else {
-      setMoveUp(50);
+      setMoveUp(30);
     }
-  }, [isLoaded, isInView2, moveUp]);
-
-  useEffect(() => {
-    if (isLoaded && isInView2) {
-      let newOpChange = new Array(5).fill(0);
-      newOpChange = [...opChange];
-
-      const interval = setInterval(() => {
-        if (newOpChange[left] < 1) {
-          setOpChange((prev) => {
-            const updatedOpChange = [...prev];
-            if (updatedOpChange[left] < 1) {
-              updatedOpChange[left] = updatedOpChange[left] + 0.1; // Update left opacity
-              return updatedOpChange;
-            }
-          });
-        } else {
-          if (left < 17) {
-            setLeft((prev) => prev + 1);
-          } else {
-            clearInterval(interval);
-          }
-        }
-      }, 20);
-
-      return () => clearInterval(interval);
-    }
-  }, [isLoaded, isInView2, left, opChange]);
+  }, [isLoaded, isInView2]);
 
   return (
-    <section id="skills" className="min-h-screen">
+    <section id="skills" className="min-h-screen w-full bg-black">
       <div
-        className="w-full flex flex-col  items-center justify-center"
+        className="max-w-7xl mx-auto px-4 py-20 flex flex-col items-center justify-center transition-transform duration-1000 ease-in-out"
         style={{
-          fontFamily: `Orbitron, sans-serif`,
-          transition: `transform 1s ease-in-out`,
           transform: `translateY(${moveUp}%)`,
+          fontFamily: "Orbitron, sans-serif",
         }}
       >
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-3 md:gap-4 lg:gap-5 items-center justify-center px-20 mx-10">
-          {/* Skill Items */}
-          <span
-            className="box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold duration-100 ease-in-out"
-            style={{
-              opacity: opChange[0],
-            }}
-          >
-            HTML
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[1] * 10
-                            } `}
-          >
-            CSS
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[2] * 10
-                            } `}
-          >
-            TAILWIND CSS
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[3] * 10
-                            } `}
-          >
-            ANGULAR
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[4] * 10
-                            } `}
-          >
-            REACT
-          </span>
-        </div>
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-3 md:gap-4 lg:gap-5 items-center justify-center px-20 mx-10">
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[5] * 10
-                            } `}
-          >
-            TYPESCRIPT
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[6] * 10
-                            } `}
-          >
-            JAVASCRIPT
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[7] * 10
-                            } `}
-          >
-            PYTHON
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[8] * 10
-                            } `}
-          >
-            JAVA
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[9] * 10
-                            } `}
-          >
-            SPRINGBOOT
-          </span>
-        </div>
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-3 md:gap-4 lg:gap-5 items-center justify-center px-20 mx-10">
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[10] * 10
-                            } `}
-          >
-            GIT
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[11] * 10
-                            } `}
-          >
-            FORK
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[12] * 10
-                            } `}
-          >
-            POSTGRESQL
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[13] * 10
-                            } `}
-          >
-            NODE.JS
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[14] * 10
-                            } `}
-          >
-            MONGODB
-          </span>
-          <span
-            className={`box-border border-2 border-gray-900 rounded-b-md px-4 py-2 text-gray-400 text-sm sm:text-sm md:text-lg lg:text-2xl text-center bg-gradient-to-r from-gray-900 to-blue-900 font-bold
-                            duration-100 ease-in-out opacity-${
-                              opChange[15] * 10
-                            } `}
-          >
-            MYSQL
-          </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 text-center bg-gradient-to-r from-blue-600 to-teal-300 bg-clip-text text-transparent">
+          My Skills
+        </h2>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 w-full px-2 sm:px-4">
+          {skillList.map((skill, i) => (
+            <span
+              key={skill}
+              className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-md text-center text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-gray-200 bg-gradient-to-r from-gray-900 to-blue-900 shadow-md sm:shadow-lg
+                transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_10px_2px_rgba(59,130,246,0.5)]"
+              style={{
+                animation: `float 4s ease-in-out ${i * 0.2}s infinite`,
+              }}
+            >
+              {skill}
+            </span>
+          ))}
         </div>
       </div>
+
+      <style>
+        {`
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-6px);
+            }
+          }
+        `}
+      </style>
     </section>
   );
 };

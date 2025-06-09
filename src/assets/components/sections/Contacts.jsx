@@ -1,49 +1,59 @@
-export const Contacts = () =>{
-    return (
-        <section id = "contacts" className = "min-h-screen flex flex-col ">
+export const Contacts = () => {
+  return (
+    <section
+      id="contacts"
+      className="min-h-screen py-16 px-4 md:px-12 bg-black text-gray-100"
+      style={{ fontFamily: "Orbitron, sans-serif" }}
+    >
+      <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center bg-gradient-to-r from-blue-600 to-teal-400 bg-clip-text text-transparent">
+        Contact Me
+      </h2>
 
-            
-                <h2 className = " text-4xl text-center bg-gradient-to-r from-blue-800 to-gray-50 bg-clip-text text-transparent font-bold flex justify-center items-center mb-10">
-                    <span>CONTACT ME</span>
-                </h2>
-                <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 ">
-                    <div className="flex flex-col justify-center items-center w-full m-10 space-y-3">
-                            <input 
-                                type="text"
-                                placeholder="Your Name"
-                                className="w-150 p-3 rounded-md bg-gradient-to-r from-blue-950 to-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+        {/* Contact Form */}
+        <form className="space-y-6 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="w-full p-4 rounded-lg bg-gradient-to-r from-gray-900 to-blue-900 text-white placeholder-gray-400 border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md hover:shadow-blue-500 transition duration-300 ease-in-out"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="w-full p-4 rounded-lg bg-gradient-to-r from-gray-900 to-blue-900 text-white placeholder-gray-400 border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md hover:shadow-blue-500 transition duration-300 ease-in-out"
+            />
+          </div>
 
-                            <input 
-                                type="email"
-                                placeholder="Your Email"
-                                className="w-150 p-3 rounded-md bg-gradient-to-r from-blue-950 to-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
+          <textarea
+            placeholder="Your Message"
+            className="w-full h-40 p-4 rounded-lg bg-gradient-to-r from-gray-900 to-blue-900 text-white placeholder-gray-400 border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none shadow-md hover:shadow-blue-500 transition duration-300 ease-in-out"
+          />
 
-                            <textarea 
-                                placeholder="Your Message"
-                                className="w-150 h-32 p-3 rounded-md bg-gradient-to-r from-blue-950 to-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                            ></textarea>
+          <button
+            type="submit"
+            className="w-full sm:w-48 h-12 bg-gradient-to-r from-blue-600 to-purple-500 text-white font-semibold rounded-lg transition duration-300 ease-in-out hover:from-purple-600 hover:to-blue-600 shadow-lg hover:scale-105"
+          >
+            Send Message
+          </button>
+        </form>
 
-                            <button 
-                                className="w-full sm:w-40 h-12 text-md box-border rounded-md bg-gradient-to-b from-blue-500 to-gray-50
-                                hover:bg-gradient-to-b hover:from-black hover:to-black transition-all duration-500 ease-in-out 
-                                hover:border-2 hover:border-amber-100 m-3 cursor-pointer"
-                            > 
-                                <span className="text-blue-950 font-mono font-semibold hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent">
-                                    Send Message
-                                </span>
-                            </button>
-                    </div>
-                    <div className = "flex flex-col justify-center items-center w-full m-10">
-                            <p className = "text-xl text-gray-400 mb-15">WARNER ROBINS, GA 31005</p>
-                            
-                            <p className = "text-xl text-gray-400 mb-15">(229)848-4272</p>
-                                
-                            <p className = "text-xl text-gray-400 mb-15">TIMPHAMVN33@GMAIL.COM</p>
-                    </div>
-                </div>
-           
-        
-        </section>)
-} 
+        {/* Contact Details */}
+        <div className="flex flex-col justify-center items-start space-y-6 text-lg text-gray-400 font-medium">
+          <div className="hover:scale-105 transition-transform duration-300">
+            <span className="block font-semibold text-white">Location:</span>
+            <span>Warner Robins, GA 31005</span>
+          </div>
+          <div className="hover:scale-105 transition-transform duration-300">
+            <span className="block font-semibold text-white">Phone:</span>
+            <span>(229) 848-4272</span>
+          </div>
+          <div className="hover:scale-105 transition-transform duration-300">
+            <span className="block font-semibold text-white">Email:</span>
+            <span>timphamvn33@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};

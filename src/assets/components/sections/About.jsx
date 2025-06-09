@@ -26,7 +26,13 @@ export const About = ({ isLoaded, isInView }) => {
 
   return (
     <section id="about">
-      <div className="min-h-screen">
+      <div
+        className="flex flex-col items-center justify-center transition-transform duration-1000 ease-in-out"
+        style={{ fontFamily: "Orbitron, sans-serif" }}
+      >
+        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center bg-gradient-to-r from-blue-600 to-teal-300 bg-clip-text text-transparent">
+          My Experiences
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-center relative w-full h-ful">
           <div
             className="flex justify-center w-full"
